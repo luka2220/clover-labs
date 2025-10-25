@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Notion Clone Notes
 
-## Getting Started
+## Functionality
 
-First, run the development server:
+- Create new pages
+- View stored pages
+- Add text blocks to pages
+- Add image blocks to pages
+- Image upload functionality
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Pages
+
+### Home
+
+`Root page on site load`
+
+- Menu option to create a new page
+- Feed to view the saved pages
+- Option to select on a saved page to view/edit
+
+### Notes Page
+
+`This page will be the most importent; All notion page functionality will live in here`
+
+`Figure out how to store pages? In JSON/CSV/SQLITE`
+
+- Each page will need it's own id
+- Need a way to add a title for a page
+- Ability to create text blocks and images in the page
+- Ability to save the page on cmd+s/ctrl+s
+- Need a way to edit pages
+- Need a way to view pages
+- Upload images from system
+- Create text blocks
+- At first all one size, then we can add headings, paragraph text, and styled text
+
+- For building the notion page elements we can build components for:
+  - Text Element: a react component that stored and renders text on the page
+  - Image Element: a react component that uploads, stores and renders the component on the page
+
+## Storage
+
+### JSON Storage
+
+JSON Storage
+
+- All pages created will be stored as an array of pages
+- Each page will have a block's array with an order of how to render them onto the page
+
+```json
+{
+  "pages": [
+    {
+      "id": "page-1",
+      "title": "My First Page",
+      "description": "This is my first page",
+      "slug": "my-first-page",
+      "metadata": {
+        "createdAt": "2025-10-25T12:50:24Z",
+        "updatedAt": "2025-10-25T12:50:24Z",
+        "createdBy": "luka2220",
+        "icon": "",
+        "color": "blue"
+      },
+      "blocks": [
+        {
+          "id": "block-1",
+          "type": "text",
+          "content": "Welcome to my page!",
+          "order": 0
+        },
+        {
+          "id": "block-2",
+          "type": "image",
+          "url": "https://example.com/image.jpg",
+          "caption": "A beautiful sunset",
+          "order": 1
+        }
+      ]
+    }
+  ]
+}
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
