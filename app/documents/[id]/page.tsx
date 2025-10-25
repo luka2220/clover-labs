@@ -1,29 +1,38 @@
-import { getDocumentById } from "../../..//lib/db";
+import { notFound } from "next/navigation";
+import { getDocumentById, getBlocksByDocumentId } from "../../../lib/db";
 import { NotionPage } from "../../components/renderDocuments";
 
-async function DocumentViewPage({
+export default async function DocumentViewPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 }) {
-  const { id } = await params;
+  const { id } = params;
 
-  const documentElements = await getDocumentById(id);
+  const doc = await getDocumentById(id);
+  if (!doc) return notFound();
+
+  const blocks = await getBlocksByDocumentId(id);
+
+  // Map DB blocks -> client blocks
   const initialBlocks =
-    documentElements.blocks?.map((b: any) =>
+    blocks.map((b) =>
       b.type === "text"
-        ? { id: b.id, type: "text", content: b.content || "" }
-        : { id: b.id, type: "image", url: b.url || "", caption: b.caption }
+        ? { id: b.id, type: "text" as const, content: b.text ?? "" }
+        : {
+            id: b.id,
+            type: "image" as const,
+            url: b.src ?? "",
+            caption: b.alt,
+          }
     ) ?? [];
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-10">
-      <h1 className="text-2xl font-semibold">{page.title}</h1>
+      <h1 className="text-2xl font-semibold">{doc.title}</h1>
       <div className="mt-6">
         <NotionPage initialBlocks={initialBlocks} />
       </div>
     </div>
   );
 }
-
-export default DocumentViewPage;

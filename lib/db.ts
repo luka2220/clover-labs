@@ -53,6 +53,13 @@ export async function getDocumentById(id: string) {
   return db.documents.find((doc) => doc.id === id) || null;
 }
 
+export async function getBlocksByDocumentId(documentId: string) {
+  const db = await readDB();
+  return db.blocks
+    .filter((b) => b.documentId === documentId)
+    .sort((a, b) => a.order - b.order);
+}
+
 export function getDbPath() {
   return DB_PATH;
 }
