@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useCallback } from "react";
 import TextBlock from "./textBlock";
 import ImageBlock from "./imageBlock";
