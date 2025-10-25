@@ -24,7 +24,7 @@ export default function Home() {
           <div className="text-center space-y-8">
             <div className="space-y-4">
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-zinc-900 via-blue-600 to-zinc-900 dark:from-white dark:via-blue-400 dark:to-white bg-clip-text text-transparent">
-                Welcome to Your Notion Clone
+                Welcome to Notion Clone
               </h2>
               <p className="text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed">
                 Create, organize, and manage your documents all in one place.

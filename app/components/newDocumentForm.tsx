@@ -2,7 +2,11 @@
 
 export function NewDocumentForm() {
   return (
-    <form action="/document" className="mx-auto max-w-md space-y-4">
+    <form
+      action="/document"
+      method="POST"
+      className="mx-auto max-w-md space-y-4"
+    >
       <div>
         <label
           htmlFor="name"

@@ -2,7 +2,7 @@ import "server-only";
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const DB_PATH = path.join(process.cwd(), "data", "db.json");
+const DB_PATH = path.join(process.cwd(), "../", "db", "data.json");
 
 type DB = {
   documents: {
