@@ -10,6 +10,7 @@ type DB = {
     title: string;
     createdAt: string;
     updatedAt: string;
+    createdBy: string;
   }[];
   blocks: {
     id: string;
