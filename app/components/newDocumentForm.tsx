@@ -3,7 +3,7 @@
 export function NewDocumentForm() {
   return (
     <form
-      action="/document"
+      action="/api/document"
       method="POST"
       className="mx-auto max-w-md space-y-4"
     >

@@ -2,7 +2,7 @@ import "server-only";
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const DB_PATH = path.join(process.cwd(), "../", "db", "data.json");
+const DB_PATH = path.join(process.cwd(), "data", "db.json");
 
 type DB = {
   documents: {
@@ -46,6 +46,11 @@ export async function readDB(): Promise<DB> {
 export async function writeDB(data: DB): Promise<void> {
   await fs.mkdir(path.dirname(DB_PATH), { recursive: true });
   await fs.writeFile(DB_PATH, JSON.stringify(data, null, 2));
+}
+
+export async function getDocumentById(id: string) {
+  const db = await readDB();
+  return db.documents.find((doc) => doc.id === id) || null;
 }
 
 export function getDbPath() {

@@ -6,6 +6,8 @@ export async function POST(req: Request) {
   const name = (form.get("name") || "").toString().trim();
   const createdBy = (form.get("createdBy") || "").toString().trim();
 
+  console.info("FORM_DATA", form);
+
   if (!name || !createdBy) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
@@ -24,5 +26,5 @@ export async function POST(req: Request) {
 
   await writeDB(db);
 
-  return NextResponse.redirect(new URL(`/documents/${id}`, req.url));
+  return NextResponse.redirect(new URL("/documents", req.url));
 }
