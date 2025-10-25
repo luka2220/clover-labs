@@ -2,12 +2,8 @@ import { notFound } from "next/navigation";
 import { getDocumentById, getBlocksByDocumentId } from "../../../lib/db";
 import { NotionPage } from "../../components/renderDocuments";
 
-export default async function DocumentViewPage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const { id } = params;
+export default async function DocumentViewPage({ params }) {
+  const { id } = await params;
 
   const doc = await getDocumentById(id);
   if (!doc) return notFound();

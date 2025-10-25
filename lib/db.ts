@@ -50,6 +50,12 @@ export async function writeDB(data: DB): Promise<void> {
 
 export async function getDocumentById(id: string) {
   const db = await readDB();
+
+  const document = db.documents.find((doc) => doc.id === id);
+  console.info("id", id);
+  console.info("DbData:", db);
+  console.info("Document:", document);
+
   return db.documents.find((doc) => doc.id === id) || null;
 }
 
